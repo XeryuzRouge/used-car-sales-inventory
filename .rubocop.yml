@@ -3,3 +3,21 @@ inherit_from: .rubocop_initial_config.yml
 require: 
   - rubocop-rspec
   - rubocop-rails
+
+# Not so useful in our "particular use-case"
+# https://github.com/rubocop-hq/rubocop/issues/691
+Style/Documentation:
+  Enabled: false
+
+#We prefer to use more than one assert per test
+RSpec/MultipleExpectations:
+  Enabled: false
+
+# Rubocop 25 line block size and RSpec tests
+# https://stackoverflow.com/questions/40934345/rubocop-25-line-block-size-and-rspec-tests
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+RSpec/ExampleLength:
+  Enabled: false
