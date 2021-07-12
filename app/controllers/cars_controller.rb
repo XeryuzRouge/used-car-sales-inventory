@@ -1,4 +1,6 @@
 class CarsController < ApplicationController
+  before_action :admin?, only: [:create]
+
   def index
     @cars = Car.all
     render json: @cars
@@ -45,5 +47,11 @@ class CarsController < ApplicationController
     end
 
     { "errors": errors }
+  end
+
+  def admin?
+    return if current_user.role == 'admin'
+
+    render json: { message: 'only admins can do this action' }, status: :unauthorized
   end
 end
