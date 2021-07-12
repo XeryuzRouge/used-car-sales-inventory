@@ -6,14 +6,14 @@ RSpec.describe Car, type: :model do
       {
         brand: 'Audi',
         model: '2001',
-        monetary_price: 12345,
+        monetary_price: 12_345,
         new: false,
-        dealerships: ['one', 'two', 'three']
+        dealerships: %w[one two three]
       }
     end
 
     it 'is valid with all the permitted attributes' do
-      valid_car = Car.new(car_data)
+      valid_car = described_class.new(car_data)
       expect(valid_car).to be_valid
     end
   end

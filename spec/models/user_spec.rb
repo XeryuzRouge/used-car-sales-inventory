@@ -11,16 +11,16 @@ RSpec.describe User, type: :model do
     end
 
     it 'is valid with all the permitted attributes' do
-      valid_user = User.new(user_data)
+      valid_user = described_class.new(user_data)
       expect(valid_user).to be_valid
     end
 
-    it 'should not be valid if any field is missing' do
-      fields = %i[username password role]
+    it 'is not valid if any field is missing' do
+      fields = [:username, :password, :role]
 
       fields.each do |field|
-        invalid_user = User.new(user_data.except(field))
-        expect(invalid_user).to_not be_valid
+        invalid_user = described_class.new(user_data.except(field))
+        expect(invalid_user).not_to be_valid
       end
     end
   end
