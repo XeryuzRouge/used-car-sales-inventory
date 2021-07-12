@@ -1,0 +1,5 @@
+inherit_from: .rubocop_initial_config.yml
+
+require: 
+  - rubocop-rspec
+  - rubocop-rails
