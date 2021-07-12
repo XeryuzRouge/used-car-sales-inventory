@@ -3,3 +3,16 @@ inherit_from: .rubocop_initial_config.yml
 require: 
   - rubocop-rspec
   - rubocop-rails
+
+# Not so useful in our "particular use-case"
+# https://github.com/rubocop-hq/rubocop/issues/691
+Style/Documentation:
+  Enabled: false
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+Style/StringLiterals
+  Exclude:
+    - 'spec/rails_helper.rb'
