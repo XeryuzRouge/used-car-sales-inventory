@@ -30,3 +30,15 @@ rake db:migrate
 ```
 rails s
 ```
+
+### Style guide
+
+We are using [Rubocop](https://github.com/rubocop/rubocop) as the project linter
+```
+rubocop
+```
+
+Auto-correct mode
+```
+rubocop -a
+```
