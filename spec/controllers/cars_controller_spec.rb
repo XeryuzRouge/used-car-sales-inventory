@@ -35,6 +35,17 @@ RSpec.describe CarsController do
     end
   end
 
+  describe 'DELETE #destroy' do
+    it 'deletes a car record' do
+      create_car('Volkswagen', '2009', 23_232, false, ['one'])
+      car = Car.last
+
+      delete :destroy, params: { id: car.id }
+      expect(response).to have_http_status(:ok)
+      expect(response.status_message).to eq('OK')
+    end
+  end
+
   private
 
   def create_car(brand, model, monetary_price, new_car, dealerships)
