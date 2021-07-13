@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe CarsController do
+  before do
+    allow(controller).to receive(:logged_in?).and_return(true)
+    allow(controller).to receive(:admin?).and_return(true)
+  end
+
   describe 'POST #create' do
     it 'returns http success when car is created' do
       params = {

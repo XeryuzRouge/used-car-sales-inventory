@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
   before_action :admin?, only: [:create, :destroy]
+  before_action :logged_in?, only: [:index]
 
   def index
     @cars = Car.all
@@ -60,8 +61,14 @@ class CarsController < ApplicationController
   end
 
   def admin?
-    return if current_user.role == 'admin'
+    return if helpers.current_user.role == 'admin'
 
     render json: { message: 'only admins can do this action' }, status: :unauthorized
+  end
+
+  def logged_in?
+    return if helpers.logged_in?
+
+    render json: { message: 'please log in' }, status: :unauthorized
   end
 end
