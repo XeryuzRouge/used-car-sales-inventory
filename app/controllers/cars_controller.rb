@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_action :admin?, only: [:create]
+  before_action :admin?, only: [:create, :destroy]
 
   def index
     @cars = Car.all
@@ -16,10 +16,16 @@ class CarsController < ApplicationController
     end
   end
 
+  def destroy
+    Car.find_by(id: params[:id]).destroy
+    render ok
+  end
+
   private
 
   def car_params
     params.require(:car).permit(
+      :id,
       :brand,
       :model,
       :monetary_price,
@@ -30,6 +36,10 @@ class CarsController < ApplicationController
 
   def created
     { status: 201 }
+  end
+
+  def ok
+    { status: 200 }
   end
 
   def bad_request(content)
