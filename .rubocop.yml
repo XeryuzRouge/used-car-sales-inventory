@@ -9,10 +9,15 @@ require:
 Style/Documentation:
   Enabled: false
 
-Style/BlockComments:
-  Exclude:
-    - 'spec/spec_helper.rb'
+#We prefer to use more than one assert per test
+RSpec/MultipleExpectations:
+  Enabled: false
 
-Style/StringLiterals
+# Rubocop 25 line block size and RSpec tests
+# https://stackoverflow.com/questions/40934345/rubocop-25-line-block-size-and-rspec-tests
+Metrics/BlockLength:
   Exclude:
-    - 'spec/rails_helper.rb'
+    - 'spec/**/*.rb'
+
+RSpec/ExampleLength:
+  Enabled: false
